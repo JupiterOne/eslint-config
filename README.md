@@ -1,6 +1,6 @@
 # @jupiterone/eslint-config
 
-This package provides the standard JupiterOne configuration.
+This package provides the standard JupiterOne `eslint` configuration.
 
 This configuration extends the following:
 
