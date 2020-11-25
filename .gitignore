@@ -1,0 +1,6 @@
+dist/
+*.log
+coverage/
+node_modules/
+work/
+package-lock.json
