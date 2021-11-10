@@ -49,5 +49,9 @@ module.exports = {
     'no-unused-vars': 'off',
     'no-undef': 'error',
     'no-constant-condition': 'warn',
+    // require identifiers to match a specified regular expression
+    // https://eslint.org/docs/rules/id-match
+    // The Invisible JavaScript Backdoor: https://certitude.consulting/blog/en/invisible-backdoor/
+    'id-match': ['error', '^[a-zA-Z]+[a-zA-Z0-9_]*$'],
   },
 };
