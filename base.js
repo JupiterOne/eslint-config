@@ -1,9 +1,9 @@
 module.exports = {
-  extends: ['eslint:recommended', 'prettier'],
+  extends: [
+    'eslint:recommended',
+    'prettier',
+  ],
   parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaVersion: 2020,
-  },
   ignorePatterns: ['node_modules/', 'dist/', 'work/', 'coverage/', '**/*.bak/'],
   overrides: [
     {
@@ -11,7 +11,6 @@ module.exports = {
       extends: [
         'plugin:@typescript-eslint/recommended',
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
-        'prettier/@typescript-eslint',
       ],
       rules: {
         '@typescript-eslint/ban-types': 'off',
@@ -33,11 +32,13 @@ module.exports = {
         '@typescript-eslint/no-unsafe-member-access': 'off',
         '@typescript-eslint/unbound-method': 'off',
         '@typescript-eslint/explicit-module-boundary-types': 'off',
+        // @typescript-eslint/no-unsafe-argument is causing erroneous errors
+        '@typescript-eslint/no-unsafe-argument': 'off',
       },
     },
     {
       files: [
-        'jest.*.js',
+        'jest.*.{ts,js}',
         'test/**/*.{ts,tsx,js,jsx}',
         '*.test.{ts,tsx,js,jsx}',
         '__mocks__/**/*.{ts,tsx,js,jsx}',
