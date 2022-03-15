@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['./base.js'],
+  extends: ['./base.js', 'plugin:react/recommended'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -7,5 +7,10 @@ module.exports = {
   },
   env: {
     browser: true,
+  },
+  settings: {
+    react: {
+      version: 'detect',
+    },
   },
 };
