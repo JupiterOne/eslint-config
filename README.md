@@ -18,14 +18,14 @@ It also provides linting support for TypeScript files via
 yarn add @jupiterone/eslint-config --dev
 ```
 
-**For Node.js apps:**
+**For Node.js apps targeting Node.js v18:**
 
 ```js
 // .eslintrc
 {
   "root": true,
   "extends": [
-    "@jupiterone/eslint-config"
+    "@jupiterone/eslint-config/node18"
   ],
   "parserOptions": {
     "project": "./tsconfig.json",
@@ -33,6 +33,13 @@ yarn add @jupiterone/eslint-config --dev
   }
 }
 ```
+
+**NOTE:** You can also target other versions of Node.js by extending one
+of the following configurations:
+
+- `@jupiterone/eslint-config/node14` (ECMA version 2020)
+- `@jupiterone/eslint-config/node16` (ECMA version 2021)
+- `@jupiterone/eslint-config/node18` (ECMA version 2022)
 
 **An experimental React configuration is also provided:**
 
