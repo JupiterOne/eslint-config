@@ -12,7 +12,7 @@
     "access": "public"
   },
   "scripts": {
-    "format-code": "prettier --write '**/*.{js,ts,md,json}'",
+    "format": "prettier --write '**/*.{js,ts,md,json}'",
     "lint": "eslint --ext .js ."
   },
   "dependencies": {
