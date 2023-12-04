@@ -1,8 +1,5 @@
 module.exports = {
-  extends: [
-    'eslint:recommended',
-    'prettier',
-  ],
+  extends: ['eslint:recommended', 'prettier'],
   parser: '@typescript-eslint/parser',
   ignorePatterns: ['node_modules/', 'dist/', 'work/', 'coverage/', '**/*.bak/'],
   overrides: [

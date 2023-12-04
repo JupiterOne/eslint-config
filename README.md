@@ -34,8 +34,8 @@ yarn add @jupiterone/eslint-config --dev
 }
 ```
 
-**NOTE:** You can also target other versions of Node.js by extending one
-of the following configurations:
+**NOTE:** You can also target other versions of Node.js by extending one of the
+following configurations:
 
 - `@jupiterone/eslint-config/node14` (ECMA version 2020)
 - `@jupiterone/eslint-config/node16` (ECMA version 2021)
