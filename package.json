@@ -1,7 +1,7 @@
 {
   "name": "@jupiterone/eslint-config",
   "version": "4.0.0",
-  "description": "An opinionated eslint config for TypeScript projects with Vitest support",
+  "description": "An opinionated eslint config for usage across JupiterOne projects",
   "repository": {
     "type": "git",
     "url": "https://github.com/JupiterOne/eslint-config"
