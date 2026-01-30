@@ -63,7 +63,7 @@ export const globalRules = {
   "no-constant-condition": "warn",
   // Prevent invisible character backdoors
   // https://certitude.consulting/blog/en/invisible-backdoor/
-  "id-match": ["error", "^[a-zA-Z_]+[a-zA-Z0-9_]*$"],
+  "id-match": ["error", "^(_|[a-zA-Z_][a-zA-Z0-9_]*)$"],
 };
 
 /**

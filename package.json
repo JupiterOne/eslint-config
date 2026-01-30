@@ -56,9 +56,6 @@
     "typescript": ">=5.3.2"
   },
   "peerDependenciesMeta": {
-    "eslint": {
-      "optional": false
-    },
     "@typescript-eslint/eslint-plugin": {
       "optional": true
     },
