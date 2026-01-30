@@ -11,6 +11,7 @@ export const vitestFilePatterns = [
   "vitest.*.{ts,mts,cts,js,mjs,cjs}",
   "**/test/**/*.{ts,tsx,mts,cts,js,jsx,mjs,cjs}",
   "**/*.test.{ts,tsx,mts,cts,js,jsx,mjs,cjs}",
+  "**/__tests__/**/*.{ts,tsx,mts,cts,js,jsx,mjs,cjs}",
   "**/__mocks__/**/*.{ts,tsx,mts,cts,js,jsx,mjs,cjs}",
 ];
 
