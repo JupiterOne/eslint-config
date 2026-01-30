@@ -8,7 +8,7 @@
   },
   "license": "MIT",
   "type": "module",
-  "main": "flat/index.js",
+  "main": "flat/index.mjs",
   "exports": {
     "./flat": "./flat/index.mjs",
     "./flat/base": "./flat/base.mjs",
@@ -42,7 +42,7 @@
   },
   "peerDependencies": {
     "@typescript-eslint/eslint-plugin": "^8.53.1",
-    "@typescript-eslint/parser": ">=6.0.0",
+    "@typescript-eslint/parser": ">=8.0.0",
     "eslint": ">=9.0.0",
     "eslint-plugin-jest": ">=28.0.0",
     "typescript": ">=5.3.2"
