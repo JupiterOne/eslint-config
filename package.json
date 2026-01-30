@@ -20,7 +20,7 @@
   },
   "scripts": {
     "format": "prettier --write '**/*.{js,mjs,ts,md,json}'",
-    "lint": "eslint flat/",
+    "lint": "eslint ./",
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit"

@@ -11,10 +11,20 @@ export default [
   eslint.configs.recommended,
   eslintConfigPrettier,
   {
-    files: ["flat/**/*.mjs"],
+    files: ["**/*.{mjs,js}"],
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: "module",
+      globals: {
+        ...globals.node,
+      },
+    },
+  },
+  {
+    files: ["**/*.{js,cjs}"],
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: "commonjs",
       globals: {
         ...globals.node,
       },
