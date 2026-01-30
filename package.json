@@ -15,8 +15,7 @@
     "./flat/base": "./flat/base.mjs",
     "./flat/vitest": "./flat/vitest.mjs",
     "./flat/jest": "./flat/jest.mjs",
-    "./base": "./base.js",
-    "./react": "./react.js"
+    "./base": "./base.js"
   },
   "publishConfig": {
     "access": "public"
