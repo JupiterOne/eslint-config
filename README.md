@@ -179,10 +179,11 @@ export default defineConfig(
 
 The Vitest configuration automatically applies to:
 
-- `vitest.*.{ts,js}`
-- `**/test/**/*.{ts,tsx,js,jsx}`
-- `**/*.test.{ts,tsx,js,jsx}`
-- `**/__mocks__/**/*.{ts,tsx,js,jsx}`
+- `vitest.*.{ts,mts,cts,js,mjs,cjs}`
+- `**/test/**/*.{ts,tsx,mts,cts,js,jsx,mjs,cjs}`
+- `**/*.test.{ts,tsx,mts,cts,js,jsx,mjs,cjs}`
+- `**/__tests__/**/*.{ts,tsx,mts,cts,js,jsx,mjs,cjs}`
+- `**/__mocks__/**/*.{ts,tsx,mts,cts,js,jsx,mjs,cjs}`
 
 ## TypeScript Rules
 
