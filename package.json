@@ -1,38 +1,74 @@
 {
   "name": "@jupiterone/eslint-config",
-  "version": "3.0.0",
-  "description": "An opinitionated eslint config",
+  "version": "4.0.0",
+  "description": "An opinionated eslint config for TypeScript projects with Vitest support",
   "repository": {
     "type": "git",
     "url": "https://github.com/JupiterOne/eslint-config"
   },
   "license": "MIT",
+  "type": "module",
   "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./flat": "./flat/index.mjs",
+    "./flat/base": "./flat/base.mjs",
+    "./flat/vitest": "./flat/vitest.mjs",
+    "./base": "./base.js",
+    "./jest": "./jest.js",
+    "./node14": "./node14.js",
+    "./node16": "./node16.js",
+    "./node18": "./node18.js",
+    "./node-base": "./node-base.js",
+    "./react": "./react.js"
+  },
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "format": "prettier --write '**/*.{js,ts,md,json}'",
-    "lint": "eslint --ext .js ."
+    "format": "prettier --write '**/*.{js,mjs,ts,md,json}'",
+    "lint": "eslint flat/",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^6.13.1",
-    "@typescript-eslint/parser": "^6.13.1",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-jest": "^27.6.0"
+    "@eslint/js": "^9.39.0",
+    "@vitest/eslint-plugin": "^1.6.6",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.0.0",
+    "typescript-eslint": "^8.32.1"
   },
   "devDependencies": {
-    "eslint": "^8.55.0",
-    "prettier": "^3.0.0",
-    "typescript": "^5.3.2"
+    "@types/eslint__js": "^8.42.3",
+    "eslint": "^9.39.0",
+    "prettier": "^3.8.0",
+    "typescript": "^5.7.3"
   },
   "peerDependencies": {
-    "eslint": ">=8.55.0",
-    "typescript": ">=5.3.2"
+    "eslint": ">=9.0.0",
+    "typescript": ">=5.3.2",
+    "@typescript-eslint/eslint-plugin": ">=6.0.0",
+    "@typescript-eslint/parser": ">=6.0.0",
+    "eslint-plugin-jest": ">=27.0.0"
+  },
+  "peerDependenciesMeta": {
+    "eslint": {
+      "optional": false
+    },
+    "@typescript-eslint/eslint-plugin": {
+      "optional": true
+    },
+    "@typescript-eslint/parser": {
+      "optional": true
+    },
+    "eslint-plugin-jest": {
+      "optional": true
+    }
   },
   "files": [
     "LICENSE",
     "*.js",
+    "*.mjs",
+    "flat/",
     "*.md"
   ]
 }
