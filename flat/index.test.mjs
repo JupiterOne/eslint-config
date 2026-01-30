@@ -6,7 +6,7 @@ import {
   createVitestConfig,
   createJestConfig,
   defaultIgnores,
-  typescriptRules,
+  typescriptDisabledRules,
   globalRules,
   nodeFetchGlobals,
   vitestFilePatterns,
@@ -66,8 +66,7 @@ describe("createBaseConfig", () => {
     const configs = createBaseConfig({ tsconfigRootDir: "/test/dir" });
     const tsConfig = configs.find((c) => c.files?.includes("**/*.{ts,tsx}"));
     assert(tsConfig !== undefined, "tsConfig should be defined");
-    assert(tsConfig.rules !== undefined, "rules should be defined");
-    expect(tsConfig.rules["@typescript-eslint/no-explicit-any"]).toBe("off");
+    expect(tsConfig.rules).toEqual(typescriptDisabledRules);
   });
 
   it("includes global rules", () => {
@@ -246,9 +245,8 @@ describe("exported constants", () => {
     expect(defaultIgnores.ignores).toContain("coverage/");
   });
 
-  it("exports typescriptRules with relaxed rules", () => {
-    expect(typescriptRules["@typescript-eslint/no-explicit-any"]).toBe("off");
-    expect(typescriptRules["@typescript-eslint/no-unused-vars"]).toBe("off");
+  it("exports typescriptDisabledRules", () => {
+    expect(typescriptDisabledRules).toEqual({});
   });
 
   it("exports globalRules with security rules", () => {

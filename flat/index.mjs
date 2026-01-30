@@ -3,7 +3,7 @@ import { defineConfig } from "eslint/config";
 import {
   createBaseConfig,
   defaultIgnores,
-  typescriptRules,
+  typescriptDisabledRules,
   globalRules,
   nodeFetchGlobals,
   eslint,
@@ -51,7 +51,7 @@ export {
   // Base exports
   createBaseConfig,
   defaultIgnores,
-  typescriptRules,
+  typescriptDisabledRules,
   globalRules,
   nodeFetchGlobals,
   // Vitest exports

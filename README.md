@@ -124,47 +124,7 @@ export default defineConfig(
 );
 ```
 
-## Legacy Usage (ESLint 8 - Deprecated)
 
-> **Note:** Legacy configuration is deprecated. Please migrate to ESLint 9 flat config.
-
-**For Node.js apps targeting Node.js v18:**
-
-```js
-// .eslintrc
-{
-  "root": true,
-  "extends": [
-    "@jupiterone/eslint-config/node18"
-  ],
-  "parserOptions": {
-    "project": "./tsconfig.json",
-    "tsconfigRootDir": "."
-  }
-}
-```
-
-**Other Node.js versions:**
-
-- `@jupiterone/eslint-config/node14` (ECMA version 2020)
-- `@jupiterone/eslint-config/node16` (ECMA version 2021)
-- `@jupiterone/eslint-config/node18` (ECMA version 2022)
-
-**React configuration:**
-
-```js
-// .eslintrc
-{
-  "root": true,
-  "extends": [
-    "@jupiterone/eslint-config/react"
-  ],
-  "parserOptions": {
-    "project": "./tsconfig.json",
-    "tsconfigRootDir": "."
-  }
-}
-```
 
 ## Test File Patterns
 
@@ -177,12 +137,7 @@ The Vitest configuration automatically applies to:
 
 ## TypeScript Rules
 
-This config uses relaxed TypeScript rules to allow gradual adoption. The following rules are disabled by default:
-
-- `@typescript-eslint/no-explicit-any`
-- `@typescript-eslint/no-unsafe-*` rules
-- `@typescript-eslint/explicit-function-return-type`
-- And more (see `typescriptRules` export)
+This config by default uses the upstream recommended typescript eslint rules: https://typescript-eslint.io/users/configs#projects-with-type-checking
 
 ## Security
 

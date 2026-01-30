@@ -27,31 +27,21 @@ export const defaultIgnores = {
 };
 
 /**
- * TypeScript rules - relaxed for gradual adoption
- * These rules are commonly disabled in JupiterOne projects
+ * ESLint TypeScript rules that are disabled by default
+ * Overrides to: tseslint.configs.recommendedTypeChecked.rules
+ * These overrides take precedence over the recommended rules.
+ * Add rules here as needed, if there are rules that we find to be too strict for our use case across consuming projects.
  * @type {import("eslint").Linter.RulesRecord}
  */
-export const typescriptRules = {
-  "@typescript-eslint/ban-types": "off",
-  "@typescript-eslint/explicit-function-return-type": "off",
-  "@typescript-eslint/no-explicit-any": "off",
-  "@typescript-eslint/no-inferrable-types": "off",
-  "@typescript-eslint/no-non-null-assertion": "off",
-  "@typescript-eslint/no-require-imports": "off",
-  "@typescript-eslint/no-unused-vars": "off",
-  "@typescript-eslint/no-use-before-define": "off",
-  "@typescript-eslint/no-unsafe-return": "off",
-  "@typescript-eslint/no-unsafe-call": "off",
-  "@typescript-eslint/restrict-plus-operands": "off",
-  "@typescript-eslint/restrict-template-expressions": "off",
-  "@typescript-eslint/no-unsafe-assignment": "off",
-  "@typescript-eslint/prefer-string-starts-ends-with": "off",
-  "@typescript-eslint/require-await": "off",
-  "@typescript-eslint/no-unsafe-member-access": "off",
-  "@typescript-eslint/unbound-method": "off",
-  "@typescript-eslint/explicit-module-boundary-types": "off",
-  "@typescript-eslint/no-unsafe-argument": "off",
-};
+export const typescriptDisabledRules = {};
+
+/**
+ * TypeScript ESLint recommended rules for TypeScript projects with type checking enabled
+ */
+export const typescriptRecommendedRules = [
+  ...tseslint.configs.recommendedTypeChecked,
+  ...tseslint.configs.recommended,
+];
 
 /**
  * Global rules applied to all files
@@ -84,7 +74,7 @@ export function createBaseConfig(options = {}) {
     eslint.configs.recommended,
 
     // TypeScript recommended rules with type checking
-    ...tseslint.configs.recommendedTypeChecked,
+    ...typescriptRecommendedRules,
 
     // Prettier config (disables formatting rules that conflict with prettier)
     eslintConfigPrettier,
@@ -102,7 +92,7 @@ export function createBaseConfig(options = {}) {
           ...nodeFetchGlobals,
         },
       },
-      rules: typescriptRules,
+      rules: typescriptDisabledRules,
     },
 
     // Global rules
