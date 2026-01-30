@@ -16,11 +16,6 @@
     "./flat/vitest": "./flat/vitest.mjs",
     "./flat/jest": "./flat/jest.mjs",
     "./base": "./base.js",
-    "./jest": "./jest.js",
-    "./node14": "./node14.js",
-    "./node16": "./node16.js",
-    "./node18": "./node18.js",
-    "./node-base": "./node-base.js",
     "./react": "./react.js"
   },
   "publishConfig": {
