@@ -1,0 +1,54 @@
+// @ts-check
+import jest from "eslint-plugin-jest";
+import globals from "globals";
+import { nodeFetchGlobals } from "./base.mjs";
+
+/**
+ * Default file patterns for Jest test files
+ */
+export const jestFilePatterns = [
+  "jest.*.{ts,js}",
+  "**/test/**/*.{ts,tsx,js,jsx}",
+  "**/*.test.{ts,tsx,js,jsx}",
+  "**/__tests__/**/*.{ts,tsx,js,jsx}",
+  "**/__mocks__/**/*.{ts,tsx,js,jsx}",
+];
+
+/**
+ * Jest-specific ESLint rules
+ * @type {import("eslint").Linter.RulesRecord}
+ */
+export const jestRules = {
+  ...jest.configs["flat/recommended"].rules,
+  "@typescript-eslint/no-non-null-assertion": "off",
+  "@typescript-eslint/unbound-method": "off",
+  "jest/expect-expect": "off",
+  "jest/valid-title": "off",
+};
+
+/**
+ * Creates a Jest ESLint flat config for test files
+ * @param {Object} options - Configuration options
+ * @param {string[]} [options.files] - Custom file patterns (defaults to jestFilePatterns)
+ * @returns {import("eslint").Linter.Config}
+ */
+export function createJestConfig(options = {}) {
+  const { files = jestFilePatterns } = options;
+
+  return {
+    files,
+    plugins: {
+      jest,
+    },
+    rules: jestRules,
+    languageOptions: {
+      globals: {
+        ...globals.node,
+        ...globals.jest,
+        ...nodeFetchGlobals,
+      },
+    },
+  };
+}
+
+export { jest };

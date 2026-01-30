@@ -17,6 +17,12 @@ import {
   vitestRules,
   vitest,
 } from "./vitest.mjs";
+import {
+  createJestConfig,
+  jestFilePatterns,
+  jestRules,
+  jest,
+} from "./jest.mjs";
 
 /**
  * Creates a complete ESLint flat config for TypeScript + Vitest projects
@@ -54,12 +60,17 @@ export {
   createVitestConfig,
   vitestFilePatterns,
   vitestRules,
+  // Jest exports
+  createJestConfig,
+  jestFilePatterns,
+  jestRules,
   // Plugin exports
   eslint,
   tseslint,
   eslintConfigPrettier,
   globals,
   vitest,
+  jest,
   // defineConfig for custom configurations
   defineConfig,
 };
