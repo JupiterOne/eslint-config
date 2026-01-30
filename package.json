@@ -8,14 +8,12 @@
   },
   "license": "MIT",
   "type": "module",
-  "main": "index.js",
+  "main": "flat/index.js",
   "exports": {
-    ".": "./index.js",
     "./flat": "./flat/index.mjs",
     "./flat/base": "./flat/base.mjs",
     "./flat/vitest": "./flat/vitest.mjs",
-    "./flat/jest": "./flat/jest.mjs",
-    "./base": "./base.js"
+    "./flat/jest": "./flat/jest.mjs"
   },
   "publishConfig": {
     "access": "public"

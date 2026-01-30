@@ -1,7 +1,8 @@
 // @ts-check
+import { defineConfig } from "eslint/config";
 import vitest from "@vitest/eslint-plugin";
 import globals from "globals";
-import { nodeFetchGlobals } from "./base.mjs";
+import { createBaseConfig, nodeFetchGlobals } from "./base.mjs";
 
 /**
  * Default file patterns for Vitest test files
@@ -53,6 +54,30 @@ export function createVitestConfig(options = {}) {
       },
     },
   };
+}
+
+/**
+ * Creates a complete ESLint flat config for TypeScript + Vitest projects
+ * @param {Object} options - Configuration options
+ * @param {string} options.tsconfigRootDir - Root directory for tsconfig.json (required - use import.meta.dirname)
+ * @param {string[]} [options.vitestFiles] - Custom file patterns for Vitest (optional)
+ * @param {import("eslint").Linter.Config[]} [options.additionalConfigs] - Additional configs to append
+ * @returns {import("eslint").Linter.Config[]}
+ */
+export function createConfig(options) {
+  const { tsconfigRootDir, vitestFiles, additionalConfigs = [] } = options;
+
+  if (!tsconfigRootDir) {
+    throw new Error(
+      "tsconfigRootDir is required. Use import.meta.dirname in your eslint.config.mjs"
+    );
+  }
+
+  return defineConfig(
+    ...createBaseConfig({ tsconfigRootDir }),
+    createVitestConfig({ files: vitestFiles }),
+    ...additionalConfigs
+  );
 }
 
 export { vitest };

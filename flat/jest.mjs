@@ -1,7 +1,8 @@
 // @ts-check
+import { defineConfig } from "eslint/config";
 import jest from "eslint-plugin-jest";
 import globals from "globals";
-import { nodeFetchGlobals } from "./base.mjs";
+import { createBaseConfig, nodeFetchGlobals } from "./base.mjs";
 
 /**
  * Default file patterns for Jest test files
@@ -49,6 +50,30 @@ export function createJestConfig(options = {}) {
       },
     },
   };
+}
+
+/**
+ * Creates a complete ESLint flat config for TypeScript + Jest projects
+ * @param {Object} options - Configuration options
+ * @param {string} options.tsconfigRootDir - Root directory for tsconfig.json (required - use import.meta.dirname)
+ * @param {string[]} [options.jestFiles] - Custom file patterns for Jest (optional)
+ * @param {import("eslint").Linter.Config[]} [options.additionalConfigs] - Additional configs to append
+ * @returns {import("eslint").Linter.Config[]}
+ */
+export function createConfig(options) {
+  const { tsconfigRootDir, jestFiles, additionalConfigs = [] } = options;
+
+  if (!tsconfigRootDir) {
+    throw new Error(
+      "tsconfigRootDir is required. Use import.meta.dirname in your eslint.config.mjs"
+    );
+  }
+
+  return defineConfig(
+    ...createBaseConfig({ tsconfigRootDir }),
+    createJestConfig({ files: jestFiles }),
+    ...additionalConfigs
+  );
 }
 
 export { jest };

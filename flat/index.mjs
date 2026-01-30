@@ -25,15 +25,14 @@ import {
 } from "./jest.mjs";
 
 /**
- * Creates a complete ESLint flat config for TypeScript + Vitest projects
+ * Creates a base ESLint flat config for TypeScript projects
  * @param {Object} options - Configuration options
  * @param {string} options.tsconfigRootDir - Root directory for tsconfig.json (required - use import.meta.dirname)
- * @param {string[]} [options.vitestFiles] - Custom file patterns for Vitest (optional)
  * @param {import("eslint").Linter.Config[]} [options.additionalConfigs] - Additional configs to append
  * @returns {import("eslint").Linter.Config[]}
  */
 export function createConfig(options) {
-  const { tsconfigRootDir, vitestFiles, additionalConfigs = [] } = options;
+  const { tsconfigRootDir, additionalConfigs = [] } = options;
 
   if (!tsconfigRootDir) {
     throw new Error(
@@ -43,7 +42,6 @@ export function createConfig(options) {
 
   return defineConfig(
     ...createBaseConfig({ tsconfigRootDir }),
-    createVitestConfig({ files: vitestFiles }),
     ...additionalConfigs
   );
 }

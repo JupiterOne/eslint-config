@@ -214,21 +214,15 @@ describe("createConfig", () => {
     expect(Array.isArray(configs)).toBe(true);
   });
 
-  it("includes base config and vitest config", () => {
+  it("includes only base config (no test framework)", () => {
     const configs = createConfig({ tsconfigRootDir: "/test/dir" });
-    // Should have multiple configs from base + vitest
-    expect(configs.length).toBeGreaterThan(1);
-  });
-
-  it("accepts custom vitest file patterns", () => {
-    const customPatterns = ["**/*.spec.ts"];
-    const configs = createConfig({
-      tsconfigRootDir: "/test/dir",
-      vitestFiles: customPatterns,
-    });
+    // Should have base configs only
+    expect(configs.length).toBeGreaterThan(0);
+    // Should NOT include vitest or jest plugins
     const vitestConfig = configs.find((c) => c.plugins?.vitest);
-    assert(vitestConfig !== undefined, "vitestConfig should be defined");
-    expect(vitestConfig.files).toEqual(customPatterns);
+    const jestConfig = configs.find((c) => c.plugins?.jest);
+    expect(vitestConfig).toBeUndefined();
+    expect(jestConfig).toBeUndefined();
   });
 
   it("appends additional configs", () => {
