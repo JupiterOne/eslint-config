@@ -1,5 +1,5 @@
 // @ts-check
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, assert } from "vitest";
 import {
   createConfig,
   createBaseConfig,
@@ -25,7 +25,8 @@ describe("createBaseConfig", () => {
   it("includes default ignores", () => {
     const configs = createBaseConfig({ tsconfigRootDir: "/test/dir" });
     const ignoreConfig = configs.find((c) => c.ignores);
-    expect(ignoreConfig).toBeDefined();
+    assert(ignoreConfig !== undefined, "ignoreConfig should be defined");
+    assert(ignoreConfig.ignores !== undefined, "ignores should be defined");
     expect(ignoreConfig.ignores).toContain("node_modules/");
     expect(ignoreConfig.ignores).toContain("dist/");
   });
@@ -33,24 +34,39 @@ describe("createBaseConfig", () => {
   it("applies tsconfigRootDir when provided", () => {
     const configs = createBaseConfig({ tsconfigRootDir: "/custom/path" });
     const tsConfig = configs.find((c) => c.files?.includes("**/*.{ts,tsx}"));
-    expect(tsConfig).toBeDefined();
-    expect(tsConfig.languageOptions.parserOptions.tsconfigRootDir).toBe(
-      "/custom/path"
+    assert(tsConfig !== undefined, "tsConfig should be defined");
+    assert(
+      tsConfig.languageOptions !== undefined,
+      "languageOptions should be defined"
     );
+    const parserOptions =
+      /** @type {{ tsconfigRootDir?: string }} */ (
+        tsConfig.languageOptions.parserOptions
+      );
+    expect(parserOptions.tsconfigRootDir).toBe("/custom/path");
   });
 
   it("works without tsconfigRootDir option", () => {
     const configs = createBaseConfig();
     expect(Array.isArray(configs)).toBe(true);
     const tsConfig = configs.find((c) => c.files?.includes("**/*.{ts,tsx}"));
-    expect(tsConfig.languageOptions.parserOptions.tsconfigRootDir).toBeUndefined();
+    assert(tsConfig !== undefined, "tsConfig should be defined");
+    assert(
+      tsConfig.languageOptions !== undefined,
+      "languageOptions should be defined"
+    );
+    const parserOptions =
+      /** @type {{ tsconfigRootDir?: string }} */ (
+        tsConfig.languageOptions.parserOptions
+      );
+    expect(parserOptions.tsconfigRootDir).toBeUndefined();
   });
 
   it("includes TypeScript rules for ts files", () => {
     const configs = createBaseConfig({ tsconfigRootDir: "/test/dir" });
     const tsConfig = configs.find((c) => c.files?.includes("**/*.{ts,tsx}"));
-    expect(tsConfig).toBeDefined();
-    expect(tsConfig.rules).toBeDefined();
+    assert(tsConfig !== undefined, "tsConfig should be defined");
+    assert(tsConfig.rules !== undefined, "rules should be defined");
     expect(tsConfig.rules["@typescript-eslint/no-explicit-any"]).toBe("off");
   });
 
@@ -59,16 +75,23 @@ describe("createBaseConfig", () => {
     const globalConfig = configs.find(
       (c) => c.rules?.["no-undef"] && !c.files
     );
-    expect(globalConfig).toBeDefined();
+    assert(globalConfig !== undefined, "globalConfig should be defined");
+    assert(globalConfig.rules !== undefined, "rules should be defined");
     expect(globalConfig.rules["no-undef"]).toBe("error");
   });
 
   it("includes Node.js and fetch globals", () => {
     const configs = createBaseConfig({ tsconfigRootDir: "/test/dir" });
     const tsConfig = configs.find((c) => c.files?.includes("**/*.{ts,tsx}"));
-    expect(tsConfig.languageOptions.globals).toBeDefined();
-    expect(tsConfig.languageOptions.globals.fetch).toBe("readonly");
-    expect(tsConfig.languageOptions.globals.process).toBeDefined();
+    assert(tsConfig !== undefined, "tsConfig should be defined");
+    assert(
+      tsConfig.languageOptions !== undefined,
+      "languageOptions should be defined"
+    );
+    const globals =
+      /** @type {Record<string, unknown>} */ (tsConfig.languageOptions.globals);
+    expect(globals.fetch).toBe("readonly");
+    expect(globals.process).toBeDefined();
   });
 });
 
@@ -93,29 +116,39 @@ describe("createVitestConfig", () => {
 
   it("includes vitest plugin", () => {
     const config = createVitestConfig();
-    expect(config.plugins).toBeDefined();
+    assert(config.plugins !== undefined, "plugins should be defined");
     expect(config.plugins.vitest).toBeDefined();
   });
 
   it("includes vitest rules", () => {
     const config = createVitestConfig();
-    expect(config.rules).toBeDefined();
-    expect(config.rules["@typescript-eslint/no-non-null-assertion"]).toBe("off");
+    assert(config.rules !== undefined, "rules should be defined");
+    expect(config.rules["@typescript-eslint/no-non-null-assertion"]).toBe(
+      "off"
+    );
     expect(config.rules["@typescript-eslint/unbound-method"]).toBe("off");
   });
 
   it("includes vitest globals", () => {
     const config = createVitestConfig();
-    expect(config.languageOptions.globals).toBeDefined();
-    expect(config.languageOptions.globals.describe).toBeDefined();
-    expect(config.languageOptions.globals.it).toBeDefined();
-    expect(config.languageOptions.globals.expect).toBeDefined();
+    assert(
+      config.languageOptions !== undefined,
+      "languageOptions should be defined"
+    );
+    const globals =
+      /** @type {Record<string, unknown>} */ (config.languageOptions.globals);
+    expect(globals.describe).toBeDefined();
+    expect(globals.it).toBeDefined();
+    expect(globals.expect).toBeDefined();
   });
 
   it("includes vitest settings", () => {
     const config = createVitestConfig();
-    expect(config.settings).toBeDefined();
-    expect(config.settings.vitest.typecheck).toBe(true);
+    assert(config.settings !== undefined, "settings should be defined");
+    const settings = /** @type {{ vitest: { typecheck: boolean } }} */ (
+      config.settings
+    );
+    expect(settings.vitest.typecheck).toBe(true);
   });
 });
 
@@ -141,30 +174,38 @@ describe("createJestConfig", () => {
 
   it("includes jest plugin", () => {
     const config = createJestConfig();
-    expect(config.plugins).toBeDefined();
+    assert(config.plugins !== undefined, "plugins should be defined");
     expect(config.plugins.jest).toBeDefined();
   });
 
   it("includes jest rules", () => {
     const config = createJestConfig();
-    expect(config.rules).toBeDefined();
-    expect(config.rules["@typescript-eslint/no-non-null-assertion"]).toBe("off");
+    assert(config.rules !== undefined, "rules should be defined");
+    expect(config.rules["@typescript-eslint/no-non-null-assertion"]).toBe(
+      "off"
+    );
     expect(config.rules["@typescript-eslint/unbound-method"]).toBe("off");
     expect(config.rules["jest/expect-expect"]).toBe("off");
   });
 
   it("includes jest globals", () => {
     const config = createJestConfig();
-    expect(config.languageOptions.globals).toBeDefined();
-    expect(config.languageOptions.globals.describe).toBe(false);
-    expect(config.languageOptions.globals.it).toBe(false);
-    expect(config.languageOptions.globals.expect).toBe(false);
-    expect(config.languageOptions.globals.jest).toBe(false);
+    assert(
+      config.languageOptions !== undefined,
+      "languageOptions should be defined"
+    );
+    const globals =
+      /** @type {Record<string, unknown>} */ (config.languageOptions.globals);
+    expect(globals.describe).toBe(false);
+    expect(globals.it).toBe(false);
+    expect(globals.expect).toBe(false);
+    expect(globals.jest).toBe(false);
   });
 });
 
 describe("createConfig", () => {
   it("throws error when tsconfigRootDir is not provided", () => {
+    // @ts-expect-error - Testing runtime error for missing required param
     expect(() => createConfig({})).toThrow("tsconfigRootDir is required");
   });
 
@@ -186,17 +227,20 @@ describe("createConfig", () => {
       vitestFiles: customPatterns,
     });
     const vitestConfig = configs.find((c) => c.plugins?.vitest);
+    assert(vitestConfig !== undefined, "vitestConfig should be defined");
     expect(vitestConfig.files).toEqual(customPatterns);
   });
 
   it("appends additional configs", () => {
+    /** @type {import("eslint").Linter.Config} */
     const additionalConfig = { rules: { "no-console": "error" } };
     const configs = createConfig({
       tsconfigRootDir: "/test/dir",
       additionalConfigs: [additionalConfig],
     });
     const customConfig = configs.find((c) => c.rules?.["no-console"]);
-    expect(customConfig).toBeDefined();
+    assert(customConfig !== undefined, "customConfig should be defined");
+    assert(customConfig.rules !== undefined, "rules should be defined");
     expect(customConfig.rules["no-console"]).toBe("error");
   });
 });
