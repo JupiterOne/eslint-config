@@ -29,6 +29,8 @@
   "scripts": {
     "format": "prettier --write '**/*.{js,mjs,ts,md,json}'",
     "lint": "eslint flat/",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -43,7 +45,8 @@
     "eslint": "^9.39.0",
     "eslint-plugin-jest": "^29.12.1",
     "prettier": "^3.8.0",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "vitest": "^4.0.18"
   },
   "peerDependencies": {
     "@typescript-eslint/eslint-plugin": "^8.53.1",

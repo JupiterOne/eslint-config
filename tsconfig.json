@@ -11,5 +11,6 @@
     "checkJs": true,
     "allowJs": true
   },
-  "include": ["flat/**/*.mjs"]
+  "include": ["flat/**/*.mjs"],
+  "exclude": ["flat/**/*.test.mjs"]
 }
