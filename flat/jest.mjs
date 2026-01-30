@@ -8,11 +8,11 @@ import { createBaseConfig, nodeFetchGlobals } from "./base.mjs";
  * Default file patterns for Jest test files
  */
 export const jestFilePatterns = [
-  "jest.*.{ts,js}",
-  "**/test/**/*.{ts,tsx,js,jsx}",
-  "**/*.test.{ts,tsx,js,jsx}",
-  "**/__tests__/**/*.{ts,tsx,js,jsx}",
-  "**/__mocks__/**/*.{ts,tsx,js,jsx}",
+  "jest.*.{ts,mts,cts,js,mjs,cjs}",
+  "**/test/**/*.{ts,tsx,mts,cts,js,jsx,mjs,cjs}",
+  "**/*.test.{ts,tsx,mts,cts,js,jsx,mjs,cjs}",
+  "**/__tests__/**/*.{ts,tsx,mts,cts,js,jsx,mjs,cjs}",
+  "**/__mocks__/**/*.{ts,tsx,mts,cts,js,jsx,mjs,cjs}",
 ];
 
 /**

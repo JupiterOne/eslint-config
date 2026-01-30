@@ -104,7 +104,7 @@ describe("createVitestConfig", () => {
   it("uses default file patterns when none provided", () => {
     const config = createVitestConfig();
     expect(config.files).toEqual(vitestFilePatterns);
-    expect(config.files).toContain("**/*.test.{ts,tsx,js,jsx}");
+    expect(config.files).toContain("**/*.test.{ts,tsx,mts,cts,js,jsx,mjs,cjs}");
   });
 
   it("uses custom file patterns when provided", () => {
@@ -161,8 +161,8 @@ describe("createJestConfig", () => {
   it("uses default file patterns when none provided", () => {
     const config = createJestConfig();
     expect(config.files).toEqual(jestFilePatterns);
-    expect(config.files).toContain("**/*.test.{ts,tsx,js,jsx}");
-    expect(config.files).toContain("**/__tests__/**/*.{ts,tsx,js,jsx}");
+    expect(config.files).toContain("**/*.test.{ts,tsx,mts,cts,js,jsx,mjs,cjs}");
+    expect(config.files).toContain("**/__tests__/**/*.{ts,tsx,mts,cts,js,jsx,mjs,cjs}");
   });
 
   it("uses custom file patterns when provided", () => {
@@ -262,7 +262,7 @@ describe("exported constants", () => {
 
   it("exports vitestFilePatterns", () => {
     expect(Array.isArray(vitestFilePatterns)).toBe(true);
-    expect(vitestFilePatterns).toContain("**/*.test.{ts,tsx,js,jsx}");
+    expect(vitestFilePatterns).toContain("**/*.test.{ts,tsx,mts,cts,js,jsx,mjs,cjs}");
   });
 
   it("exports vitestRules", () => {
@@ -271,8 +271,8 @@ describe("exported constants", () => {
 
   it("exports jestFilePatterns", () => {
     expect(Array.isArray(jestFilePatterns)).toBe(true);
-    expect(jestFilePatterns).toContain("**/*.test.{ts,tsx,js,jsx}");
-    expect(jestFilePatterns).toContain("**/__tests__/**/*.{ts,tsx,js,jsx}");
+    expect(jestFilePatterns).toContain("**/*.test.{ts,tsx,mts,cts,js,jsx,mjs,cjs}");
+    expect(jestFilePatterns).toContain("**/__tests__/**/*.{ts,tsx,mts,cts,js,jsx,mjs,cjs}");
   });
 
   it("exports jestRules", () => {

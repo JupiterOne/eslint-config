@@ -8,10 +8,10 @@ import { createBaseConfig, nodeFetchGlobals } from "./base.mjs";
  * Default file patterns for Vitest test files
  */
 export const vitestFilePatterns = [
-  "vitest.*.{ts,js}",
-  "**/test/**/*.{ts,tsx,js,jsx}",
-  "**/*.test.{ts,tsx,js,jsx}",
-  "**/__mocks__/**/*.{ts,tsx,js,jsx}",
+  "vitest.*.{ts,mts,cts,js,mjs,cjs}",
+  "**/test/**/*.{ts,tsx,mts,cts,js,jsx,mjs,cjs}",
+  "**/*.test.{ts,tsx,mts,cts,js,jsx,mjs,cjs}",
+  "**/__mocks__/**/*.{ts,tsx,mts,cts,js,jsx,mjs,cjs}",
 ];
 
 /**
