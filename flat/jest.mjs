@@ -1,4 +1,3 @@
-// @ts-check
 import { defineConfig } from "eslint/config";
 import jest from "eslint-plugin-jest";
 import globals from "globals";

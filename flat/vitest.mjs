@@ -1,4 +1,3 @@
-// @ts-check
 import { defineConfig } from "eslint/config";
 import vitest from "@vitest/eslint-plugin";
 import globals from "globals";
