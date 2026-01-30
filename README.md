@@ -14,8 +14,6 @@ This package provides the standard JupiterOne `eslint` configuration.
 
 ```sh
 npm install @jupiterone/eslint-config --save-dev
-# or
-yarn add @jupiterone/eslint-config --dev
 ```
 
 ## Usage (ESLint 9 Flat Config - Recommended)
