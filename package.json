@@ -1,6 +1,6 @@
 {
   "name": "@jupiterone/eslint-config",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "An opinionated eslint config for usage across JupiterOne projects",
   "repository": {
     "type": "git",

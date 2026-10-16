@@ -193,6 +193,10 @@ This config by default uses the upstream recommended typescript eslint rules: ht
 
 The `id-match` rule is enabled to prevent invisible character backdoors. See [The Invisible JavaScript Backdoor](https://certitude.consulting/blog/en/invisible-backdoor/) for more information.
 
+## Restricted Imports
+
+`no-restricted-imports` bans `@lifeomic/alpha`. Use `createRequestClient` from `@jupiterone/platform-sdk-fetch` instead.
+
 ## Migration from v3 to v4
 
 v4 introduces ESLint 9 flat config support and enables stricter TypeScript rules by default. This guide covers upgrading from the legacy `.eslintrc` format to the new flat config.

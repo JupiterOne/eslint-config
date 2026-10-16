@@ -53,6 +53,18 @@ export const globalRules = {
   // Prevent invisible character backdoors
   // https://certitude.consulting/blog/en/invisible-backdoor/
   "id-match": ["error", "^(_|[a-zA-Z_][a-zA-Z0-9_]*)$"],
+  "no-restricted-imports": [
+    "error",
+    {
+      paths: [
+        {
+          name: "@lifeomic/alpha",
+          message:
+            "@lifeomic/alpha is deprecated. Use createRequestClient from @jupiterone/platform-sdk-fetch instead.",
+        },
+      ],
+    },
+  ],
 };
 
 /**

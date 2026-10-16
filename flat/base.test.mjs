@@ -1,4 +1,5 @@
 import { describe, it, expect, assert } from "vitest";
+import { Linter } from "eslint";
 import {
   createBaseConfig,
   nodeFetchGlobals,
@@ -71,6 +72,17 @@ describe("globalRules", () => {
 
   it("sets no-constant-condition to warn", () => {
     expect(globalRules["no-constant-condition"]).toBe("warn");
+  });
+
+  it("bans imports of @lifeomic/alpha", () => {
+    const linter = new Linter({ configType: "flat" });
+    const messages = linter.verify(
+      'import { Alpha } from "@lifeomic/alpha";\nexport default Alpha;\n',
+      [{ languageOptions: { sourceType: "module" }, rules: globalRules }]
+    );
+    expect(messages).toHaveLength(1);
+    expect(messages[0].ruleId).toBe("no-restricted-imports");
+    expect(messages[0].message).toContain("@jupiterone/platform-sdk-fetch");
   });
 
   it("includes id-match rule for security", () => {
